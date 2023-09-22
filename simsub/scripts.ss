@@ -7,14 +7,14 @@
         :std/format
         :std/sort
         (only-in :std/srfi/1 take)
-        :vyzo/simsub/env
-        :vyzo/simsub/proto
-        :vyzo/simsub/floodsub
-        :vyzo/simsub/gossipsub-base
-        :vyzo/simsub/gossipsub-v1_0
-        :vyzo/simsub/gossipsub-v1_1
-        :vyzo/simsub/episub
-        :vyzo/simsub/simulator)
+        "env"
+        "proto"
+        "floodsub"
+        "gossipsub-base"
+        "gossipsub-v1_0"
+        "gossipsub-v1_1"
+        "episub"
+        "simulator")
 (export #t)
 
 (def (simple-gossipsub/v1.0-simulation #!key kws params: (params #f))
@@ -53,7 +53,23 @@
                         transcript: (transcript void)
                         rng: (rng (make-rng))
                         router: router
-                        params: params)
+                        params: params
+                        D: (D 6)
+                        D-low: (D-low 4)
+                        D-high: (D-high 12)
+                        heartbeat: (heartbeat 1)
+                        )
+
+  (set! (overlay-D params)D)
+  (set! (overlay-D-low params) D-low)
+  (set! (overlay-D-high params) D-high)
+  (set! (overlay-heartbeat params) heartbeat)
+  ; (displayln nodes)
+  ; (displayln D)
+  ; (displayln D-low)
+  ; (displayln D-high)
+  ; (displayln heartbeat)
+
   (def script-rng
     (make-subrng rng 3 5))
 
@@ -102,6 +118,17 @@
     (displayln "sources: " nsources)
     (displayln "publish: " publish)
     (displayln "deliver: " deliver)
+    (displayln "D: " (overlay-D params))
+    (displayln "D-low: " (overlay-D-low params))
+    (displayln "D-high: " (overlay-D-high params))
+    (displayln "heartbeat: " (overlay-heartbeat params))
+    (displayln "initial-heartbeat-delay: " (overlay-initial-heartbeat-delay params))
+    (displayln "gossip-window: " (overlay-gossip-window params))
+    (displayln "D-gossip: " (overlay/v1.0-D-gossip params))
+    ; (displayln "gossip-factor: " (overlay/v1.1-gossip-factor params))
+    ; (displayln "gossip-factor: " (overlay/v1.1-gossip-factor params))
+    ; (displayln "flood-publish: " (overlay/v1.1-flood-publish params))
+    ; (displayln "px: " (overlay/v1.1-px params))
     (for ((values msg count) send)
       (displayln msg ": " count))
 
@@ -122,7 +149,12 @@
                                   connect:
                                   linger:
                                   trace:
-                                  transcript:)))
+                                  transcript:
+                                  D:
+                                  D-low:
+                                  D-high:
+                                  heartbeat:
+                                  )))
     (##thread-join! simulator absent-obj absent-obj) ; don't get picked up by the vt scheduler
     (display-summary!)
     (transcript (unbox traces))))

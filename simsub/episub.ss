@@ -7,11 +7,11 @@
         :std/iter
         :std/sort
         (only-in :std/srfi/1 take)
-        :vyzo/simsub/proto
-        :vyzo/simsub/env
-        :vyzo/simsub/gossipsub-base
-        :vyzo/simsub/gossipsub-v1_0
-        :vyzo/simsub/gossipsub-v1_1)
+        "proto"
+        "env"
+        "gossipsub-base"
+        "gossipsub-v1_0"
+        "gossipsub-v1_1")
 (export #t)
 
 ;; episub overlay parameters

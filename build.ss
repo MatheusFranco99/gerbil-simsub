@@ -4,7 +4,7 @@
         :std/make)
 
 (defbuild-script
-  `((gxc: "simsub/scheduler" ,@(include-gambit-sharp))
+   `((gxc: "simsub/scheduler" ,@(include-gambit-sharp))
     "simsub/env"
     "simsub/proto"
     "simsub/floodsub"

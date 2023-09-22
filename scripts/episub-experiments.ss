@@ -3,9 +3,9 @@
 (import :gerbil/gambit
         :std/format
         :std/iter
-        :vyzo/simsub/scheduler
-        :vyzo/simsub/scripts
-        :vyzo/simsub/episub)
+        "../scheduler"
+        "../scripts"
+        "../episub")
 
 (def (run-simulations nodes sources messages)
   (def rng

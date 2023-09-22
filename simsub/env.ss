@@ -7,7 +7,7 @@
         :std/actor
         :std/sort
         :std/logger
-        :vyzo/simsub/scheduler)
+        "scheduler")
 (export #t)
 
 (deflogger simsub)

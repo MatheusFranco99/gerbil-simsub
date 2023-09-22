@@ -5,10 +5,10 @@
 (import :gerbil/gambit/random
         :std/iter
         (only-in :std/srfi/1 take)
-        :vyzo/simsub/proto
-        :vyzo/simsub/env
-        :vyzo/simsub/gossipsub-base
-        :vyzo/simsub/gossipsub-v1_0)
+        "proto"
+        "env"
+        "gossipsub-base"
+        "gossipsub-v1_0")
 (export #t)
 
 ;; gossipsub/v1.1 overlay parameters

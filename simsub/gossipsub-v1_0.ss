@@ -4,9 +4,9 @@
 
 (import :std/iter
         (only-in :std/srfi/1 take)
-        :vyzo/simsub/proto
-        :vyzo/simsub/env
-        :vyzo/simsub/gossipsub-base)
+        "proto"
+        "env"
+        "gossipsub-base")
 (export #t)
 
 ;; gossipsub/v1.0 overlay parameters

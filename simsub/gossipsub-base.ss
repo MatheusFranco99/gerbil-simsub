@@ -7,8 +7,8 @@
         :std/iter
         :std/actor
         (only-in :std/srfi/1 take drop-right)
-        :vyzo/simsub/proto
-        :vyzo/simsub/env)
+        "proto"
+        "env")
 (export #t)
 
 ;; overlay parameters

@@ -11,7 +11,7 @@
         :std/misc/barrier
         :std/misc/completion
         (only-in :std/srfi/1 take)
-        :vyzo/simsub/env)
+        "env")
 (export start-simulation! stop-simulation!)
 
 (defproto simulator

@@ -4,8 +4,8 @@
 (import :std/actor
         :std/sugar
         :std/iter
-        :vyzo/simsub/proto
-        :vyzo/simsub/env)
+        "proto"
+        "env")
 (export #t)
 
 (def (floodsub _ receive initial-peers rng ready! go!)
