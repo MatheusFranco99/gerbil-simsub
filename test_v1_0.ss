@@ -7,6 +7,10 @@
     D-low: 1
     D-high: 20
     heartbeat: 2
+    initial-heartbeat-delay: 2
+    history: 6
+    gossip-window: 3
+    D-gossip: 3
     nodes: 128
     sources: 5
     messages: 10
