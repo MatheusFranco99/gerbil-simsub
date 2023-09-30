@@ -184,7 +184,7 @@
   (def buckets (vector))
   (def samples 0)
   (def (bucket-stars i)
-    (let* ((delta (inexact->exact (ceiling (/ samples 100))))
+    (let* ((delta (inexact->exact (ceiling (/ samples 25))))
            (count (vector-ref buckets i))
            (stars (inexact->exact (floor (/ count delta)))))
       (make-string stars #\*)))
@@ -200,7 +200,7 @@
       (for (ts deliver)
         (set! samples (1+ samples))
         (let* ((delta (- ts publish))
-               (bucket (inexact->exact (floor (/ delta .1))))) ; 100ms buckets
+               (bucket (inexact->exact (floor (/ delta .025))))) ; 100ms buckets
           (unless (< bucket (vector-length buckets))
             (let (new-buckets (make-vector (1+ bucket) 0))
               (subvector-move! buckets 0 (vector-length buckets) new-buckets 0)
@@ -208,7 +208,7 @@
           (vector-set! buckets bucket (1+ (vector-ref buckets bucket)))))))
   (for (i (in-range (vector-length buckets)))
     (printf "~a\t~a\t~a\n"
-            (pad (format "~a-~ams" (* i 100) (* (1+ i) 100)) 12)
+            (pad (format "~a-~ams" (* i 25) (* (1+ i) 25)) 12)
             (pad (format "~a" (vector-ref buckets i)) 6)
             (bucket-stars i))))
 
